@@ -11,12 +11,16 @@ Web stavební firmy Samostavby (František Sádovský, DiS.). Je to obyčejný s
 
 | Stránka | Soubor |
 | --- | --- |
-| Úvod | `index.html` |
+| Úvod (samostavby.cz/home) | `home.html` |
 | Služby | `rekonstrukce.html`, `zednicke-prace.html`, `obklady.html`, `sadrokartony.html`, `zatepleni.html`, `pokladka-dlazby.html` |
 | Realizace | `realizace.html` |
 | Kontakt a formulář | `kontakt.html` |
 | Ochrana osobních údajů | `ochrana-osobnich-udaju.html` |
 | Poděkování po odeslání formuláře | `dekujeme.html` |
+
+Soubor `index.html` jen přesměruje návštěvníky ze samostavby.cz na samostavby.cz/home, neupravujte ho.
+
+Adresy stránek jsou bez koncovky: soubor `kontakt.html` je na webu jako samostavby.cz/kontakt. V odkazech mezi stránkami se proto píše `/kontakt`, ne `kontakt.html`.
 
 Telefon, e-mail a adresa jsou na každé stránce (hlavička, kontakt, patička). Při jejich změně použijte hledání a nahrazení ve všech souborech.
 
@@ -26,7 +30,7 @@ Každá stránka má nahoře `<title>` a `<meta name="description">`. To je text
 
 1. Fotky nahrajte do složky `assets/img/realizace/` (Add file → Upload files). Ideálně JPG o šířce kolem 1600 px, každá do 500 kB.
 2. V `realizace.html` je v komentáři připravený vzor `<article class="project">`. Zkopírujte ho do `<div class="projects">` a upravte cestu k fotce, popis fotky (`alt`), název a obec s rokem.
-3. Po přidání první realizace smažte blok `<div class="empty-state">`. Stejný blok je i na úvodní stránce v sekci Realizace.
+3. Po přidání první realizace smažte blok `<div class="empty-state">`. Stejný blok je i na úvodní stránce (`home.html`) v sekci Realizace.
 
 ## Kontaktní formulář
 
