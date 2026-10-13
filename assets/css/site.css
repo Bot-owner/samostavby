@@ -154,8 +154,12 @@ a:hover { text-decoration-thickness: 2px; }
 .main-nav a { text-decoration: none; padding-block: 6px; border-bottom: 2px solid transparent; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { border-bottom-color: var(--brick); }
 .header-call { min-height: 44px; padding: 0.5em 1em; font-variant-numeric: tabular-nums; }
+/* při kliknutí na odkaz v menu (#o-nas, #sluzby…) se nadpis zastaví kousek pod horním okrajem */
+html { scroll-padding-top: 24px; }
 @media (min-width: 960px) {
   .site-header { position: sticky; top: env(safe-area-inset-top, 0px); }
+  /* hlavička zůstává nahoře (cca 73 px), nadpis se tedy musí zastavit až pod ní */
+  html { scroll-padding-top: calc(73px + 32px + env(safe-area-inset-top, 0px)); }
 }
 @media (max-width: 720px) {
   .main-nav { order: 3; width: 100%; justify-content: space-between; gap: 4px 12px; border-top: 1px solid var(--mortar); padding-top: 8px; }
