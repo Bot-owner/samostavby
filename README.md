@@ -1,6 +1,6 @@
 # samostavby.cz
 
-Web stavební firmy Samostavby (František Sádovský, DiS.). Je to obyčejný statický web: HTML stránky, jeden soubor se styly a pár řádků JavaScriptu. Běží zdarma na GitHub Pages na adrese https://samostavby.cz.
+Web stavební firmy SaMo Stavby (František Sádovský, DiS.). Je to obyčejný statický web: HTML stránky, jeden soubor se styly a pár řádků JavaScriptu. Běží zdarma na GitHub Pages na adrese https://samostavby.cz.
 
 ## Jak upravit text
 
@@ -24,7 +24,7 @@ Adresy stránek jsou bez koncovky: soubor `kontakt.html` je na webu jako samosta
 
 Telefon, e-mail a adresa jsou na každé stránce (hlavička, kontakt, patička). Při jejich změně použijte hledání a nahrazení ve všech souborech.
 
-Na stránce Kontakt (`kontakt.html`) je nahoře přehled údajů (telefon, e-mail, jméno, sídlo, oblast do 30 km, odkaz na SaMo Elektro) a obrázek dodávky `assets/img/dodavka-samostavby.svg`. Až budete mít fotku skutečné polepené dodávky, stačí ji nahrát do `assets/img/` a v `kontakt.html` přepsat cestu v `<img src="…">`. Odkaz na SaMo Elektro (samoelektro.cz) je navíc v patičce všech stránek.
+Na stránce Kontakt (`kontakt.html`) je nahoře přehled údajů (telefon, e-mail, jméno, sídlo, oblast do 30 km, odkaz na SaMo Elektro) a fotka dodávky s logem `assets/img/dodavka-samostavby.jpg`. Až budete mít fotku skutečné polepené dodávky, stačí ji nahrát do `assets/img/` a v `kontakt.html` přepsat cestu v `<img src="…">`. Odkaz na SaMo Elektro (samoelektro.cz) je navíc v patičce všech stránek.
 
 Každá stránka má nahoře `<title>` a `<meta name="description">`. To je text, který se ukazuje ve výsledcích Googlu a Seznamu. Při úpravě služby je dobré upravit i tyhle dva řádky.
 
