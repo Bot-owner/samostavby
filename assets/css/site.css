@@ -390,7 +390,7 @@ a.brick:focus-visible { outline-color: var(--slate); outline-offset: 4px; z-inde
 .contact-facts > div { grid-template-columns: 8.5rem minmax(0, 1fr); }
 .contact-facts dd a { text-decoration-thickness: 1px; }
 .dd-note { display: block; margin-top: 3px; font-size: var(--step--1); font-weight: 400; font-stretch: 100%; color: var(--slate-2); line-height: 1.45; }
-/* fotka dodávky má bílé pozadí, proto je bílá i podložka (v obou režimech) */
+/* fotka dodávky */
 .van { margin: 0; background: var(--van-plate); border-radius: var(--radius); overflow: hidden; }
 .van img { width: 100%; height: auto; }
 @media (max-width: 900px) { .contact-hero { grid-template-columns: 1fr; } }
