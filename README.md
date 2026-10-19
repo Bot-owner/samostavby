@@ -34,7 +34,7 @@ Každá stránka má nahoře `<title>` a `<meta name="description">`. To je text
 
 ## Kontaktní formulář
 
-Formulář posílá poptávky přes službu FormSubmit na `info@samostavby.cz`. Po prvním odeslání přijde na tento e-mail aktivační zpráva od FormSubmit, kterou je potřeba jednou potvrdit. Do té doby poptávky nechodí.
+Formulář posílá poptávky přes službu FormSubmit na `samostavby@gmail.com`. Po prvním odeslání přijde na tento e-mail aktivační zpráva od FormSubmit, kterou je potřeba jednou potvrdit. Do té doby poptávky nechodí.
 
 ## Barvy a písmo
 
