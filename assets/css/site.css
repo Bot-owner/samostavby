@@ -100,6 +100,7 @@ body {
   line-height: 1.6;
   text-rendering: optimizeLegibility;
 }
+[hidden] { display: none !important; }
 img, svg { max-width: 100%; }
 img { height: auto; display: block; }
 h1, h2, h3 { margin: 0; text-wrap: balance; color: inherit; }
@@ -349,6 +350,15 @@ a.brick:focus-visible { outline-color: var(--slate); outline-offset: 4px; z-inde
 .form-status { font-size: var(--step--1); font-weight: 600; }
 .form-status[data-state="error"] { color: var(--err); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+/* potvrzení po odeslání poptávky (nahradí formulář) */
+.form-done {
+  display: grid; gap: 1rem; align-content: start;
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid var(--concrete-line); border-top: 6px solid var(--brick);
+}
+.form-done h3 { font-size: var(--step-2); font-weight: 740; font-stretch: 118%; line-height: 1.1; }
+.form-done p { color: var(--concrete-ink-2); max-width: 46ch; }
+.form-done a { color: var(--concrete-ink); font-weight: 650; white-space: nowrap; }
 @media (max-width: 560px) { .form { grid-template-columns: 1fr; } }
 
 /* ---------- stránky služeb ---------- */

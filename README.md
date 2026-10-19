@@ -36,6 +36,8 @@ Každá stránka má nahoře `<title>` a `<meta name="description">`. To je text
 
 Formulář posílá poptávky přes službu FormSubmit na `samostavby@gmail.com`. Po prvním odeslání přijde na tento e-mail aktivační zpráva od FormSubmit, kterou je potřeba jednou potvrdit. Do té doby poptávky nechodí.
 
+Poptávka se odesílá na pozadí, návštěvník zůstane na webu a místo formuláře uvidí potvrzení „Děkujeme, poptávka je odeslaná“. Text potvrzení je v `home.html` a `kontakt.html` v bloku `<div class="form-done">` hned za formulářem. Kdyby odeslání na pozadí selhalo, formulář se odešle klasicky a návštěvník skončí na stránce `dekujeme.html`.
+
 ## Barvy a písmo
 
 Barvy jsou na začátku souboru `assets/css/site.css` (blok `:root`). Písmo Archivo je uložené přímo na webu v `assets/fonts/` (licence SIL OFL), takže web nenačítá nic od Googlu a nepotřebuje cookie lištu.
