@@ -36,7 +36,7 @@ Každá stránka má nahoře `<title>` a `<meta name="description">`. To je text
 
 Formulář posílá poptávky přes službu FormSubmit na `samostavby@gmail.com`. Po prvním odeslání přijde na tento e-mail aktivační zpráva od FormSubmit, kterou je potřeba jednou potvrdit. Do té doby poptávky nechodí.
 
-Poptávka se odesílá na pozadí, návštěvník zůstane na webu a místo formuláře uvidí potvrzení „Děkujeme, poptávka je odeslaná“. Text potvrzení je v `home.html` a `kontakt.html` v bloku `<div class="form-done">` hned za formulářem. Kdyby odeslání na pozadí selhalo, formulář se odešle klasicky a návštěvník skončí na stránce `dekujeme.html`.
+Po kliknutí na Odeslat se místo formuláře hned ukáže potvrzení „Děkujeme, poptávka je odeslaná“ a poptávka se dosílá na pozadí (doručí se, i když návštěvník stránku zavře). Kdyby odeslání selhalo, ukáže se hláška „Poptávku se nepodařilo odeslat“ s tlačítkem Odeslat znovu, které formulář odešle klasicky (návštěvník pak skončí na stránce `dekujeme.html`). Texty obou hlášek jsou v `home.html` a `kontakt.html` v blocích `<div class="form-done">` hned za formulářem.
 
 ## Barvy a písmo
 

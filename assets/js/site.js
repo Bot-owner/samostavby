@@ -21,35 +21,28 @@
   // V náhledu (jiná adresa) ukáže vysvětlení místo odeslání.
   var host = window.location.hostname;
   var live = /(^|\.)samostavby\.cz$/.test(host) || /\.github\.io$/.test(host) || host === "localhost" || host === "127.0.0.1";
-  var canAjax = !!(window.fetch && window.FormData && window.JSON);
+  var canAjax = !!(window.fetch && window.FormData && window.URLSearchParams);
 
   var forms = document.querySelectorAll("form[data-poptavka]");
   Array.prototype.forEach.call(forms, function (form) {
     var status = form.querySelector(".form-status");
     var button = form.querySelector("button[type=submit]");
     var label = button ? button.textContent : "";
-    // potvrzení „Děkujeme…“ je hned za formulářem (<div class="form-done">)
-    var done = form.nextElementSibling && form.nextElementSibling.classList.contains("form-done") ? form.nextElementSibling : null;
-    var sending = false;
+    var box = form.parentNode;
+    var done = box.querySelector(".form-done:not(.form-fail)"); // „Děkujeme, poptávka je odeslaná“
+    var fail = box.querySelector(".form-fail");                // „Poptávku se nepodařilo odeslat“
 
-    function setSending(on) {
-      sending = on;
-      if (!button) return;
-      button.disabled = on;
-      button.textContent = on ? "Odesílám…" : label;
+    function show(el) {
+      form.hidden = el !== form;
+      if (done) done.hidden = el !== done;
+      if (fail) fail.hidden = el !== fail;
+      if (el && el !== form) el.focus();
     }
 
-    // Záloha: klasické odeslání formuláře (FormSubmit pak přesměruje na /dekujeme)
+    // Klasické odeslání formuláře (FormSubmit pak přesměruje na /dekujeme)
     function sendClassic() {
+      if (button) { button.disabled = true; button.textContent = "Odesílám…"; }
       HTMLFormElement.prototype.submit.call(form);
-    }
-
-    function showDone() {
-      setSending(false);
-      if (!done) { sendClassic(); return; }
-      form.hidden = true;
-      done.hidden = false;
-      done.focus();
     }
 
     form.addEventListener("submit", function (event) {
@@ -62,52 +55,57 @@
         }
         return;
       }
-      if (!canAjax || !done) {
-        setSending(true);
+      if (!canAjax || !done || !fail) {
+        if (button) { button.disabled = true; button.textContent = "Odesílám…"; }
         return; // starý prohlížeč: klasické odeslání
       }
       event.preventDefault();
-      if (sending) return;
-      setSending(true);
-      if (status) status.hidden = true;
 
-      var data = {};
-      new FormData(form).forEach(function (value, key) { data[key] = value; });
-      if (data._honey) { showDone(); return; } // vyplnil to robot – nic neposílat
-      delete data._next;
+      var data = new URLSearchParams();
+      new FormData(form).forEach(function (value, key) {
+        if (key !== "_next") data.append(key, value);
+      });
 
-      // Odeslání na pozadí, návštěvník zůstane na webu
+      // Potvrzení ukážeme hned, poptávka se dosílá na pozadí.
+      show(done);
+      if (data.get("_honey")) return; // vyplnil to robot – nic neposílat
+
+      // Jednoduchý požadavek bez předběžného dotazu prohlížeče; keepalive
+      // ho doručí, i když návštěvník mezitím stránku zavře.
       var url = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
       fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(data)
+        headers: { "Accept": "application/json" },
+        body: data,
+        keepalive: true
       })
         .then(function (res) {
           return res.json().catch(function () { return {}; }).then(function (json) {
-            var ok = json.success === true || json.success === "true";
-            if (res.ok && (ok || json.success === undefined)) showDone();
-            else sendClassic();
+            var failed = !res.ok || json.success === false || json.success === "false";
+            if (failed) show(fail);
           });
         })
-        .catch(sendClassic);
+        .catch(function () { show(fail); });
     });
 
-    // Tlačítko „Poslat další poptávku“ v potvrzení
-    if (done) {
-      var again = done.querySelector("[data-form-again]");
-      if (again) {
-        again.addEventListener("click", function () {
-          form.reset();
-          done.hidden = true;
-          form.hidden = false;
-          var first = form.querySelector("input:not([type=hidden]):not([tabindex='-1'])");
-          if (first) first.focus();
-        });
-      }
+    // „Poslat další poptávku“
+    var again = done && done.querySelector("[data-form-again]");
+    if (again) {
+      again.addEventListener("click", function () {
+        form.reset();
+        show(form);
+        var first = form.querySelector("input:not([type=hidden]):not([tabindex='-1'])");
+        if (first) first.focus();
+      });
     }
 
+    // „Odeslat znovu“ po chybě: klasické odeslání s vyplněnými údaji
+    var retry = fail && fail.querySelector("[data-form-retry]");
+    if (retry) retry.addEventListener("click", sendClassic);
+
     // Po návratu tlačítkem Zpět znovu povolit odeslání
-    window.addEventListener("pageshow", function () { setSending(false); });
+    window.addEventListener("pageshow", function () {
+      if (button) { button.disabled = false; button.textContent = label; }
+    });
   });
 })();
