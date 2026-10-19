@@ -24,6 +24,8 @@ Adresy stránek jsou bez koncovky: soubor `kontakt.html` je na webu jako samosta
 
 Telefon, e-mail a adresa jsou na každé stránce (hlavička, kontakt, patička). Při jejich změně použijte hledání a nahrazení ve všech souborech.
 
+Na stránce Kontakt (`kontakt.html`) je nahoře přehled údajů (telefon, e-mail, jméno, sídlo, oblast do 30 km, odkaz na SaMo Elektro) a obrázek dodávky `assets/img/dodavka-samostavby.svg`. Až budete mít fotku skutečné polepené dodávky, stačí ji nahrát do `assets/img/` a v `kontakt.html` přepsat cestu v `<img src="…">`. Odkaz na SaMo Elektro (samoelektro.cz) je navíc v patičce všech stránek.
+
 Každá stránka má nahoře `<title>` a `<meta name="description">`. To je text, který se ukazuje ve výsledcích Googlu a Seznamu. Při úpravě služby je dobré upravit i tyhle dva řádky.
 
 ## Jak přidat realizaci
